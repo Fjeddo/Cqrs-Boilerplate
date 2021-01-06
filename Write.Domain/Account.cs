@@ -8,7 +8,7 @@ namespace Write.Domain
     public class Account
     {
         private readonly AccountState _state;
-        private readonly List<IAccountEvent> _changes = new List<IAccountEvent>();
+        private readonly List<Event> _changes = new List<Event>();
 
         private Account(AccountState state)
         {
@@ -20,12 +20,12 @@ namespace Write.Domain
             return new Account(state);
         }
 
-        public IReadOnlyCollection<IAccountEvent> Changes()
+        public IReadOnlyCollection<Event> Changes()
         {
             return _changes.AsReadOnly();
         }
 
-        private void Apply(IAccountEvent e)
+        private void Apply(Event e)
         {
             _state.Mutate(e);
             _changes.Add(e);

@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace Write.Domain.Events
+﻿namespace Write.Domain.Events
 {
-    public class BecameCustomerEvent : IAccountEvent
+    public class BecameCustomerEvent : Event
     {
         public string Email { get; }
         public string Username { get; }
@@ -11,9 +9,6 @@ namespace Write.Domain.Events
         {
             Email = email;
             Username = username;
-            Timestamp = DateTimeOffset.Now;
         }
-
-        public DateTimeOffset Timestamp { get; set; }
     }
 }

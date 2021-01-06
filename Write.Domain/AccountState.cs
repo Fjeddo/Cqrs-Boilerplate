@@ -5,7 +5,7 @@ using Write.Domain.Events;
 
 namespace Write.Domain
 {
-    public class AccountState
+    public class AccountState : State
     {
         public string Email { get; private set; }
         public string Username { get; private set; }
@@ -117,9 +117,9 @@ namespace Write.Domain
             ActivePayPerViews.Add(@event.MovieId);
         }
 
-        public void Mutate(IAccountEvent e)
+        protected override void DynamicRouteToWhen(dynamic e)
         {
-            this.When(e as dynamic);
+            this.When(e);
         }
 
         public class CreditCard
